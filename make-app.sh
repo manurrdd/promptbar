@@ -17,7 +17,7 @@ cat > "$APP/Contents/Info.plist" <<'PLIST'
 <plist version="1.0">
 <dict>
     <key>CFBundleExecutable</key><string>Promptbar</string>
-    <key>CFBundleIdentifier</key><string>local.promptbar</string>
+    <key>CFBundleIdentifier</key><string>com.manurrdd.promptbar</string>
     <key>CFBundleName</key><string>Promptbar</string>
     <key>CFBundlePackageType</key><string>APPL</string>
     <key>CFBundleShortVersionString</key><string>1.0</string>
