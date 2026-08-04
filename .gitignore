@@ -1,0 +1,4 @@
+.build/
+.swiftpm/
+Promptbar.app/
+.DS_Store
