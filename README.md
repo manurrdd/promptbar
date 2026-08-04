@@ -23,13 +23,7 @@ Prompts are stored in `~/Library/Application Support/Promptbar/prompts.json`. No
 
 Requires macOS 14 (Sonoma) or later.
 
-Grab `Promptbar.zip` from the [latest release](https://github.com/manurrdd/promptbar/releases/latest), unzip it and move `Promptbar.app` to `/Applications`.
-
-The app is not notarized (there's no paid developer account behind this), so the first launch needs one extra step: right-click the app and choose *Open*, or if macOS still refuses, clear the quarantine flag:
-
-```bash
-xattr -d com.apple.quarantine /Applications/Promptbar.app
-```
+Grab `Promptbar.zip` from the [latest release](https://github.com/manurrdd/promptbar/releases/latest), unzip it and move `Promptbar.app` to `/Applications`. The app is signed and notarized, so it opens without any warnings.
 
 If you'd rather not trust a downloaded binary, building it yourself takes a minute — see below.
 

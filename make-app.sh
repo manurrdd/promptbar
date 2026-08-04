@@ -7,9 +7,10 @@ swift build -c release --arch arm64 --arch x86_64
 
 APP="Promptbar.app"
 rm -rf "$APP"
-mkdir -p "$APP/Contents/MacOS"
+mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
 
 cp .build/apple/Products/Release/Promptbar "$APP/Contents/MacOS/Promptbar"
+cp assets/AppIcon.icns "$APP/Contents/Resources/AppIcon.icns"
 
 cat > "$APP/Contents/Info.plist" <<'PLIST'
 <?xml version="1.0" encoding="UTF-8"?>
@@ -19,6 +20,7 @@ cat > "$APP/Contents/Info.plist" <<'PLIST'
     <key>CFBundleExecutable</key><string>Promptbar</string>
     <key>CFBundleIdentifier</key><string>com.manurrdd.promptbar</string>
     <key>CFBundleName</key><string>Promptbar</string>
+    <key>CFBundleIconFile</key><string>AppIcon</string>
     <key>CFBundlePackageType</key><string>APPL</string>
     <key>CFBundleShortVersionString</key><string>1.0</string>
     <key>LSMinimumSystemVersion</key><string>14.0</string>
