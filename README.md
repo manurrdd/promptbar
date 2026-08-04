@@ -19,9 +19,23 @@ Prompts are stored in `~/Library/Application Support/Promptbar/prompts.json`. No
 
 <img src="assets/main-window.png" width="420" alt="Main window">
 
-## Running it
+## Installing
 
-Requires macOS 14 (Sonoma) or later. To build you need Swift 5.9+, which comes with Xcode or the Command Line Tools.
+Requires macOS 14 (Sonoma) or later.
+
+Grab `Promptbar.zip` from the [latest release](https://github.com/manurrdd/promptbar/releases/latest), unzip it and move `Promptbar.app` to `/Applications`.
+
+The app is not notarized (there's no paid developer account behind this), so the first launch needs one extra step: right-click the app and choose *Open*, or if macOS still refuses, clear the quarantine flag:
+
+```bash
+xattr -d com.apple.quarantine /Applications/Promptbar.app
+```
+
+If you'd rather not trust a downloaded binary, building it yourself takes a minute — see below.
+
+## Building from source
+
+You need Swift 5.9+, which comes with Xcode or the Command Line Tools.
 
 ```bash
 git clone https://github.com/manurrdd/promptbar.git
@@ -29,9 +43,7 @@ cd promptbar
 swift run
 ```
 
-The icon shows up in your menu bar.
-
-## Installing it as an app
+The icon shows up in your menu bar. To install your own build:
 
 ```bash
 ./make-app.sh
@@ -39,7 +51,7 @@ mv Promptbar.app /Applications
 open /Applications/Promptbar.app
 ```
 
-The bundle is ad-hoc signed, which is fine since you're building it yourself. Note that "Launch at login" only works when Promptbar runs as an installed app, not through `swift run`.
+Note that "Launch at login" only works when Promptbar runs as an installed app, not through `swift run`.
 
 To quit, use the ⏻ button at the bottom of the menu bar popover.
 

@@ -1,4 +1,5 @@
 .build/
 .swiftpm/
 Promptbar.app/
+Promptbar.zip
 .DS_Store
