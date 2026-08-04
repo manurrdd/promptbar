@@ -3,13 +3,13 @@
 set -e
 cd "$(dirname "$0")"
 
-swift build -c release
+swift build -c release --arch arm64 --arch x86_64
 
 APP="Promptbar.app"
 rm -rf "$APP"
 mkdir -p "$APP/Contents/MacOS"
 
-cp .build/release/Promptbar "$APP/Contents/MacOS/Promptbar"
+cp .build/apple/Products/Release/Promptbar "$APP/Contents/MacOS/Promptbar"
 
 cat > "$APP/Contents/Info.plist" <<'PLIST'
 <?xml version="1.0" encoding="UTF-8"?>
