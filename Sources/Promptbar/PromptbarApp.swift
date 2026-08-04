@@ -39,6 +39,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         Task { @MainActor in
             HotKeyManager.shared.onPress = { QuickPanel.shared.toggle() }
             HotKeyManager.shared.register(AppSettings.shared.hotkey)
+            Welcome.showIfNeeded()
         }
     }
 }

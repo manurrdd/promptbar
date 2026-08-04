@@ -1,6 +1,6 @@
 #!/bin/zsh
-# Builds, signs with Developer ID, notarizes and staples Promptbar.app,
-# leaving a distributable Promptbar.zip.
+# Builds, signs with Developer ID, notarizes and staples Promptbar,
+# leaving a distributable Promptbar.dmg (drag-to-Applications layout).
 #
 # One-time setup:
 #   1. A "Developer ID Application" certificate in your keychain
@@ -24,10 +24,15 @@ fi
 echo "Signing with: $IDENTITY"
 codesign --force --options runtime --timestamp --sign "$IDENTITY" Promptbar.app
 
-ditto -c -k --keepParent Promptbar.app Promptbar.zip
-echo "Submitting for notarization…"
-xcrun notarytool submit Promptbar.zip --keychain-profile "$PROFILE" --wait
+STAGING=$(mktemp -d)
+cp -R Promptbar.app "$STAGING/"
+ln -s /Applications "$STAGING/Applications"
+rm -f Promptbar.dmg
+hdiutil create -volname Promptbar -srcfolder "$STAGING" -format UDZO -quiet Promptbar.dmg
+rm -rf "$STAGING"
+codesign --force --timestamp --sign "$IDENTITY" Promptbar.dmg
 
-xcrun stapler staple Promptbar.app
-ditto -c -k --keepParent Promptbar.app Promptbar.zip
-echo "Done: Promptbar.zip (signed, notarized and stapled)"
+echo "Submitting for notarization…"
+xcrun notarytool submit Promptbar.dmg --keychain-profile "$PROFILE" --wait
+xcrun stapler staple Promptbar.dmg
+echo "Done: Promptbar.dmg (signed, notarized and stapled)"
